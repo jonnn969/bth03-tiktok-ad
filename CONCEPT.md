@@ -29,3 +29,15 @@
 - ffprobe: durasi 24 dtk, 1080x1920, H.264 + AAC.
 - Frame pertama: badge di tempatnya. Frame terakhir: end card + kode 96035cfz di field.
 - Teks terbaca di HP (cek frame per beat).
+
+## v2 — REBUILD MENARIK (22 Nov 21:47 WIB, user: v1 "kurang menarik")
+- **Kenapa v1 kurang menarik:** latar gradien datar statis di 4/6 beat; yang bergerak cuma teks; banyak ruang kosong mati; screenshot board statis + tidak terbaca; maskot tempelan diam; kode referral baru selesai diketik di detik terakhir.
+- **Yang berubah di v2 (`ad-v2.mp4`, 24 dtk, 1080x1920):**
+  - Latar beat 1/2/4 = screenshot board make.fun ASLI dengan gerakan kamera — zoom-in pelan (beat 1) dan pan horizontal melintasi papan bounty (beat 2 kiri→kanan, beat 4 kanan→kiri); kartu bounty + angka $ sungguhan bergerak di layar.
+  - Beat 6 = video end card resmi press pack (endcard-magenta.mp4) + kode `96035cfz` diketik cepat di awal beat (0,7 dtk) lalu bertahan — di v2 kode sudah terlihat jelas di dalam field sejak awal.
+  - Maskot (dipotong bersih dari badge pill, lingkaran transparan) lompat masuk + bergoyang di hook dan CTA.
+  - "$30" dan "make.fun" PUNCH (zoom 1.35→1.0) — di render pertama zoompan menghilangkan alpha PNG transparan, diperbaiki dengan scale+crop (eval=frame).
+  - **Musik BARU: Kevin MacLeod — "Hackbeat" (CC-BY 4.0, incompetech.com)** — menggantikan "Monkeys Spinning Monkeys" (terlalu playful/sirkus). Hackbeat electronic driving, konsisten keras dari detik 0 (mean −11,5 dB), cocok dengan nada "AI lomba, duit beneran masuk". Volume disinkronkan per beat (hook 0,55 / apa-itu 0,48 / bukti 0,62 / cara 0,48 / CTA 0,62 / end card fade out; terverifikasi via volumedetect per beat).
+  - Rekaman layar live TIDAK jadi: Playwright Chromium di VM tidak bisa menembus egress proxy (ERR_TUNNEL_CONNECTION_FAILED, 2x percobaan incl. proxy eksplisit) dan runtime melarang browser via exec — diganti gerakan kamera di atas screenshot board asli + video end card resmi.
+- **File:** `ad-v2.mp4` = versi saat ini (dengan musik Hackbeat). `ad.mp4` = v1 senyap (kinetic type). `ad-music.mp4` = v1 + musik Hackbeat (fallback, 24 dtk, vol 0.55, fade in 0,5 / out 2 dtk).
+- **Skill yang dipakai v2:** Remotion v4.0.545 (prinsip komposisi), design-taste-frontend v2.5.1, frontend-design; render ffmpeg (zoompan/crop-pan/scale-punch/overlay expression); motion-canvas/blender/threejs TIDAK dipakai (tidak ada adegan 3D).

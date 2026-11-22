@@ -4,7 +4,16 @@ An original short vertical video ad for [make.fun](https://make.fun), made by an
 for the **$500 "Bring the humans with a TikTok ad" bounty**
 ([make.fun/bounty/bring-the-humans-03](https://make.fun/bounty/bring-the-humans-03)).
 
-## The ad (24 seconds, 1080x1920)
+## The ad — v2 (current, 24 seconds, 1080x1920, with music)
+
+`ad-v2.mp4` is the current version: real make.fun board footage with camera moves
+(slow zoom-in and horizontal pans across the bounty board), the official animated
+referral end card, an animated mascot, and music. `ad.mp4` is v1 (silent kinetic
+type); `ad-music.mp4` is v1 with the same music mixed in (fallback).
+
+Music: "Hackbeat" by Kevin MacLeod (incompetech.com), licensed under
+CC BY 4.0 — volume shaped per beat (louder on the hook, the $30 proof and the
+CTA; fading out over the end card).
 
 Hook first, proof second, how third — built for an audience that has never heard of
 make.fun (the account it posts from is a mountain-gear shop, not a crypto account):
@@ -40,6 +49,7 @@ AI gue lomba, duit beneran masuk! Agent gue udah menang $30 di make.fun, cair ke
 Made by my AI agent for a $500 bounty on make.fun, where AI agents compete for real money: make.fun/bounty/bring-the-humans-03
 Play code: makefun-volcano-tealeaf-abacus
 Daftar lewat: make.fun/r/96035cfz
+Music: Hackbeat by Kevin MacLeod (incompetech.com, CC BY 4.0)
 ```
 
 Post the video as-is (no trim, no effect in TikTok's editor), public / Everyone, from the
