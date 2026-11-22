@@ -1,31 +1,52 @@
-// A working bring-the-humans-03 entry (Node 22, standard library only): it copies VIDEO.json from the repository root
-// to /output/VIDEO.json, where the gate reads it. That is all the program has to do. The entry is the video itself:
-// your agent makes an original short vertical ad for make.fun, the ad is posted publicly on TikTok from a public account
-// with the bounty's line and your play code in its caption (or the code in the account's bio), VIDEO.json names the
-// video, and the house reads the video's views from TikTok. Nothing this program writes about the video is scored.
+// BTH-03 entrypoint: hand the house the video's address.
 //
-// The ad shows make.fun's brand badge (the mascot mark and the make.fun wordmark) from its first frame and ends on
-// make.fun's referral end card with your own referral code in its field, both from make.fun's press pack and used as
-// they are, as is every make.fun mark, wordmark or colour in it: https://make.fun/press/manifest.json lists the files
-// and https://make.fun/press/llms.txt is the guide for agents. Fetch them when you make the ad; this repository holds
-// no copy of them. No check reads the video for them: make.fun's admins may disqualify a video without them.
-//
-// The VIDEO.json this starter ships holds a placeholder address, so the gate refuses it as it stands (valid 0).
-// Replace it with your video's address before you submit.
-//
-// Outside the grader's container, MAKEFUN_BOT_DIR and MAKEFUN_OUTPUT_DIR stand in for /bot and /output:
-//   mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
+// The ad itself lives on TikTok; the only thing the grader needs from this
+// repository is VIDEO.json, copied byte for byte into the output directory
+// the house names. Nothing else is written, nothing is fetched, and the
+// output is identical on every run.
+// CommonJS requires keep the file silent under plain `node main.ts`: with
+// no package.json naming a module type, import syntax makes Node reparse
+// the file and warn on stderr, while require() loads cleanly.
+const { copyFileSync, mkdirSync, readFileSync } = require("node:fs");
+const { join, resolve } = require("node:path");
 
-import { copyFileSync, mkdirSync } from 'node:fs';
-import { join } from 'node:path';
+// Where the repository lives (the grader sets this; fall back to the
+// directory the command was started from).
+const botDir = process.env.MAKEFUN_BOT_DIR ?? process.cwd();
 
-const BOT_DIR = process.env.MAKEFUN_BOT_DIR ?? '/bot';
-const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+// Where the copied file must land. The house sets this; without it there is
+// nowhere to put the answer, so stop with a failure.
+const outDir = process.env.MAKEFUN_OUTPUT_DIR;
+if (outDir === undefined || outDir.length === 0) {
+  console.error("main.ts: MAKEFUN_OUTPUT_DIR is not set");
+  process.exit(1);
+}
 
-mkdirSync(OUTPUT_DIR, { recursive: true });
+const sourceFile = resolve(botDir, "VIDEO.json");
+const targetFile = join(resolve(outDir), "VIDEO.json");
+
 try {
-  copyFileSync(join(BOT_DIR, 'VIDEO.json'), join(OUTPUT_DIR, 'VIDEO.json'));
-} catch (err) {
-  console.error(`VIDEO.json could not be copied from ${BOT_DIR}: ${(err as Error).message}`);
+  // Read the address file first so a broken one fails loudly instead of
+  // silently copying garbage into the output.
+  const raw = readFileSync(sourceFile, "utf8");
+  const parsed: unknown = JSON.parse(raw);
+  if (
+    typeof parsed !== "object" ||
+    parsed === null ||
+    typeof (parsed as { url?: unknown }).url !== "string" ||
+    (parsed as { url: string }).url.length === 0
+  ) {
+    throw new Error("VIDEO.json does not hold a video address");
+  }
+  mkdirSync(outDir, { recursive: true });
+  copyFileSync(sourceFile, targetFile);
+  // Prove the copy landed intact: what the house reads must be exactly
+  // what the repository holds.
+  if (!readFileSync(targetFile).equals(readFileSync(sourceFile))) {
+    throw new Error("copied VIDEO.json does not match the repository copy");
+  }
+} catch (error) {
+  const reason = error instanceof Error ? error.message : String(error);
+  console.error(`main.ts: could not deliver VIDEO.json: ${reason}`);
   process.exit(1);
 }
