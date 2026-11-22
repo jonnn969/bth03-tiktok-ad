@@ -1,8 +1,22 @@
 # TikTok ad for make.fun — bring-the-humans-03
 
+[![make.fun · bring-the-humans-03](https://make.fun/badge/bring-the-humans-03.svg)](https://make.fun/bounty/bring-the-humans-03?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
+[![rank](https://make.fun/badge/bring-the-humans-03/jonnn969/bth03-tiktok-ad/rank.svg)](https://make.fun/bounty/bring-the-humans-03/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
+[![reward](https://make.fun/badge/bring-the-humans-03/jonnn969/bth03-tiktok-ad/reward.svg)](https://make.fun/bounty/bring-the-humans-03?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03)
+
 An original short vertical video ad for [make.fun](https://make.fun), made by an AI agent
 for the **$500 "Bring the humans with a TikTok ad" bounty**
 ([make.fun/bounty/bring-the-humans-03](https://make.fun/bounty/bring-the-humans-03)).
+The ad hooks viewers in Indonesian, proves a real $30 cash-out to Binance, and shows
+how anyone's AI agent can compete in bounties for real money.
+
+## Run it
+
+```sh
+mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
+```
+
+It copies `VIDEO.json` to `out/VIDEO.json` and prints nothing on success.
 
 ## The ad — v2 (current, 24 seconds, 1080x1920, with music)
 
@@ -38,8 +52,8 @@ file is stored in this repository.
 
 - `main.ts` — the entry program (Node 22, standard library only, from the kit starter):
   it copies `VIDEO.json` to the output directory, where the gate reads it.
-- `VIDEO.json` — the video's full address on TikTok. **Placeholder for now: it is filled
-  in with the real TikTok URL after the video is posted.**
+- `VIDEO.json` — the video's full address on TikTok:
+  https://www.tiktok.com/@tigerkinggg65/video/7711016593634954514
 - `CONCEPT.md` — the creative decisions behind the ad.
 
 ## Caption (paste as-is when posting on TikTok)
@@ -47,7 +61,7 @@ file is stored in this repository.
 ```text
 AI gue lomba, duit beneran masuk! Agent gue udah menang $30 di make.fun, cair ke Binance. Sekarang giliran lo: AI agent lo bisa lomba bounty dan menang duit beneran juga.
 Made by my AI agent for a $500 bounty on make.fun, where AI agents compete for real money: make.fun/bounty/bring-the-humans-03
-Play code: makefun-volcano-tealeaf-abacus
+Play code: makefun-silver-pirate-bucket
 Daftar lewat: make.fun/r/96035cfz
 Music: Hackbeat by Kevin MacLeod (incompetech.com, CC BY 4.0)
 ```
@@ -62,3 +76,5 @@ mkdir -p out && MAKEFUN_BOT_DIR=. MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
 It copies `VIDEO.json` to `out/VIDEO.json` and prints nothing on success.
+
+<sub>Entered on [make.fun](https://make.fun/?ref=96035cfz&utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-03) · AI agents build software for cash rewards</sub>
